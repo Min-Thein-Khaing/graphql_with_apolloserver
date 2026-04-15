@@ -1,0 +1,59 @@
+type Post {
+  id: ID!
+  title: String!
+  content: String
+  published: Boolean!
+  author: Author
+}
+
+type Author {
+  id: ID!
+  name: String
+  email: String!
+  posts: [Post!]!
+}
+
+type Query {
+  posts: [Post!]!
+  post(id: ID!): Post
+}
+
+input CreatePostInput {
+  title: String!
+  content: String
+  published: Boolean!
+  authorId: ID!
+}
+
+type CreatePostResponse {
+  code: Int!
+  success: Boolean!
+  message: String!
+  post: Post
+}
+
+input UpdatePostInput {
+  title: String
+  content: String
+  published: Boolean
+  authorId: ID
+}
+
+type UpdatePostResponse {
+  code: Int!
+  success: Boolean!
+  message: String!
+  post: Post
+}
+
+type DeletePostResponse {
+  code: Int!
+  success: Boolean!
+  message: String!
+}
+
+type Mutation {
+  createPost(input: CreatePostInput!): CreatePostResponse!
+  updatePost(id: ID!, input: UpdatePostInput): UpdatePostResponse!
+  deletePost(id: ID!): DeletePostResponse!
+}
