@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "compile": "tsc",
-    "dev": "concurrently \"npm run generate\" \"tsx watch src/index.ts\"",
+    "dev": "concurrently \"npm run generate\" \"tsx watch src/index.ts\" \"tsc --noEmit --watch\"",
     "start": "npm run compile && node dist/index.js",
     "generate": "graphql-codegen --watch \"src/graphql/schema.graphql\" --config codegen.ts",
     "test": "echo \"Error: no test specified\" && exit 1"

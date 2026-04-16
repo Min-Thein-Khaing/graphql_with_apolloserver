@@ -10,12 +10,7 @@ type Author {
   id: ID!
   name: String
   email: String!
-  posts: [Post!]!
-}
-
-type Query {
-  posts: [Post!]!
-  post(id: ID!): Post
+  posts: [Post]
 }
 
 input CreatePostInput {
@@ -52,8 +47,13 @@ type DeletePostResponse {
   message: String!
 }
 
+type Query {
+  posts: [Post!]!
+  post(id: ID!): Post
+}
+
 type Mutation {
   createPost(input: CreatePostInput!): CreatePostResponse!
-  updatePost(id: ID!, input: UpdatePostInput): UpdatePostResponse!
+  updatePost(id: ID!, input: UpdatePostInput!): UpdatePostResponse!
   deletePost(id: ID!): DeletePostResponse!
 }

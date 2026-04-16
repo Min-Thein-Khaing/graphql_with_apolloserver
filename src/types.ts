@@ -21,7 +21,7 @@ export type Author = {
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
-  posts: Array<Post>;
+  posts?: Maybe<Array<Maybe<Post>>>;
 };
 
 export type CreatePostInput = {
@@ -66,7 +66,7 @@ export type MutationDeletePostArgs = {
 
 export type MutationUpdatePostArgs = {
   id: Scalars['ID']['input'];
-  input?: InputMaybe<UpdatePostInput>;
+  input: UpdatePostInput;
 };
 
 export type Post = {
@@ -213,7 +213,7 @@ export type AuthorResolvers<ContextType = any, ParentType extends ResolversParen
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  posts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>;
+  posts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType>;
 };
 
 export type CreatePostResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CreatePostResponse'] = ResolversParentTypes['CreatePostResponse']> = {
@@ -232,7 +232,7 @@ export type DeletePostResponseResolvers<ContextType = any, ParentType extends Re
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createPost?: Resolver<ResolversTypes['CreatePostResponse'], ParentType, ContextType, RequireFields<MutationCreatePostArgs, 'input'>>;
   deletePost?: Resolver<ResolversTypes['DeletePostResponse'], ParentType, ContextType, RequireFields<MutationDeletePostArgs, 'id'>>;
-  updatePost?: Resolver<ResolversTypes['UpdatePostResponse'], ParentType, ContextType, RequireFields<MutationUpdatePostArgs, 'id'>>;
+  updatePost?: Resolver<ResolversTypes['UpdatePostResponse'], ParentType, ContextType, RequireFields<MutationUpdatePostArgs, 'id' | 'input'>>;
 };
 
 export type PostResolvers<ContextType = any, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = {
